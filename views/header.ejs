@@ -1,0 +1,22 @@
+<header>
+    <nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+      <a id="nava" class="navbar-brand" href="/home" style="margin-left: 15px;">
+        <img src="https://clipart-library.com/images/pc7rqMMRi.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+        Address Book
+      </a>
+      <div class="navbar-collapse collapse justify-content-end">
+        <ul class="navbar-nav">
+          <% if(IsLogedIn) { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout" style="margin-right: 15px;">Logout</a>
+            </li>
+          <% } else { %>
+            <li class="nav-item">
+              <a class="nav-link" href="/login" style="margin-right: 15px;">Login</a>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  

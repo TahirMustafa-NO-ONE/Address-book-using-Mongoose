@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <title>Update User</title>
+    <style>
+         html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content {
+            flex: 1;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+        form{
+            padding: 20px;
+        }
+        h1{
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body style="padding-top: 55px; background-color: rgb(241, 244, 246);">
+    <%- include('header', {IsLogedIn: IsLogedIn}) %>
+        <div class="container">
+            <div class="col-lg-6 offset-lg-3 col-sm-12 col-xs-12 my-3">
+                <h1>Update User</h1>
+                <div class="content">
+                <form action="/update" method="post">
+                    
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" value="<%= user.name %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone" value="<%= user.phone %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender" class="form-label">Gender:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="male" value="male" <%
+                                if(user.gender==='male' ) {%>checked<%}%>>
+                                <label class="form-check-label" for="male">Male</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="female" value="female" <%
+                                if(user.gender==='female' ) {%>checked<%}%>>
+                                <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Skills:</label><br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skills[]" value="Communication" <%
+                                if(user.skills.includes('Communication')) {%>checked<%}%>>
+                                <label class="form-check-label" for="Communication">Communication</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skills[]" value="Problem Solving" <%
+                                if(user.skills.includes('Problem Solving')) {%>checked<%}%>>
+                                <label class="form-check-label" for="ProblemSolving">Problem Solving</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skills[]" value="Technical Skill" <%
+                                if(user.skills.includes('Technical Skill')) {%>checked<%}%>>
+                                <label class="form-check-label" for="TechnicalSkill">Technical Skill</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skills[]" value="Teamwork" <%
+                                if(user.skills.includes('Teamwork')) {%>checked<%}%>>
+                                <label class="form-check-label" for="Teamwork">Teamwork</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="skills[]" value="Leadership" <%
+                                if(user.skills.includes('Leadership')) {%>checked<%}%>>
+                                <label class="form-check-label" for="Leadership">Leadership</label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address:</label>
+                        <input type="address" class="form-control" id="address" name="address"
+                            value="<%= user.address %>" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City:</label> <!-- Changed the label to 'City' -->
+                        <select class="form-select" name="city" id="city">
+                            <option value="">--select--</option>
+                            <option value="Lahore" <% if(user.city==='Lahore' ) {%>selected<%}%>>Lahore</option>
+                            <option value="Islamabad" <% if(user.city==='Islamabad' ) {%>selected<%}%>>Islamabad
+                            </option>
+                            <option value="Karachi" <% if(user.city==='Karachi' ) {%>selected<%}%>>Karachi</option>
+                            <option value="Abbottabad" <% if(user.city==='Abbottabad' ) {%>selected<%}%>>Abbottabad
+                            </option>
+                            <option value="Faisalabad" <% if(user.city==='Faisalabad' ) {%>selected<%}%>>Faisalabad
+                            </option>
+                            <option value="Multan" <% if(user.city==='Multan' ) {%>selected<%}%>>Multan</option>
+                            <option value="Peshawar" <% if(user.city==='Peshawar' ) {%>selected<%}%>>Peshawar</option>
+                            <option value="Quetta" <% if(user.city==='Quetta' ) {%>selected<%}%>>Quetta</option>
+                            <option value="Hyderabad" <% if(user.city==='Hyderabad' ) {%>selected<%}%>>Hyderabad
+                            </option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="id" value="<%= user.id %>">
+                    <button type="submit" class="btn btn-dark mb-3">Update User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <%- include('footer') %>
+</body>
+
+</html>
